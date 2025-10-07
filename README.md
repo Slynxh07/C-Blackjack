@@ -18,19 +18,14 @@ cmake --build .
 ```
 # Project Structure
 
+```bash
 CardGame/
-
 ├── include/          # Header files (.h)
-
 ├── src/              # Source files (.cpp)
-
 ├── CMakeLists.txt    # CMake build config
-
 ├── .gitignore
-
 └── README.md
 
-```bash
 # After building, the executable will be inside the build/ folder:
 ./CardGame
 ```
