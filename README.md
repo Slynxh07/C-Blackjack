@@ -6,7 +6,7 @@ A simple C++ card game built with CMake.
 
 ```bash
 # Clone the repository
-git clone https://github.com/<your-username>/CardGame.git
+git clone https://github.com/<Slynxh07>/CardGame.git
 cd CardGame
 
 # Create build directory
