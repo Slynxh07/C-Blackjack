@@ -20,15 +20,14 @@ void Game::restartGame()
         deckManager.deal(player.hand);
         deckManager.deal(dealerHand);
     }
-    firstTurn = true;
+    dealerShow = false;
 }
 
 void Game::showHands()
 {
-    if (firstTurn)
+    if (!dealerShow)
     {
         std::cout << "Dealer's Hand: " << dealerHand[0].getFace() << " X";
-        firstTurn = false;
     }
     else
     {
@@ -69,6 +68,7 @@ void Game::hitOrStand()
                     break;
                 case('S'):
                     player.stand();
+                    dealerShow = true;
                     valid = true;
                     break;
                 default:
@@ -81,4 +81,10 @@ void Game::hitOrStand()
     }
 
     
+}
+
+void Game::playGame()
+{
+    restartGame();
+    hitOrStand();
 }

@@ -13,10 +13,11 @@ class Game {
         void showHands();
         void restartGame();
         void hitOrStand();
+        void playGame();
 
     private:
         bool isRunning;
-        bool firstTurn;
+        bool dealerShow;
         Player player;
         DeckManager deckManager;
         std::vector<Card> dealerHand;
