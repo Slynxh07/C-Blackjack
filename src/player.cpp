@@ -18,6 +18,7 @@ bool Player::isStanding()
 
 bool Player::isBust()
 {
+    std::cout << "Func called";
     if (calcHandVal() > 21)
     {
         for (Card c : hand)
@@ -29,7 +30,7 @@ bool Player::isBust()
             }
         }
         bust = true;
-        std::cout << "BUST! You lose";
+        std::cout << "BUST! You lose" << std::endl;
     }
     return bust;
 }
@@ -42,4 +43,10 @@ int Player::calcHandVal()
         sum += c.getValue();
     }
     return sum;
+}
+
+void Player::playerReset()
+{
+    standing = false;
+    bust = false;
 }

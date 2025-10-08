@@ -19,6 +19,7 @@ void Game::restartGame()
     dealerHand.clear();
     deckManager.initDeck();
     deckManager.shuffleDeck();
+    player.playerReset();
     for (int i = 0; i < 2; i++)
     {
         deckManager.deal(player.hand);
@@ -79,9 +80,8 @@ void Game::hitOrStand()
                     std::cout << "Invalid Input! Try again: " << std::endl;
                     break;
             }
-
-            if (player.isBust() || player.isStanding()) canPlay = false;
         }
+        if (player.isBust() || player.isStanding()) canPlay = false;
     }
 
     

@@ -10,6 +10,7 @@ class Player {
         bool isStanding();
         bool isBust();
         int calcHandVal();
+        void playerReset();
 
     private:
         bool standing;
