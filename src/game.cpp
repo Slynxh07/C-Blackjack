@@ -5,7 +5,7 @@ Game::Game()
     isRunning = true;
     player = Player();
     deckManager = DeckManager();
-    restartGame();
+    //restartGame();
 }
 
 bool Game::running()
@@ -15,6 +15,10 @@ bool Game::running()
 
 void Game::restartGame()
 {
+    player.hand.clear();
+    dealerHand.clear();
+    deckManager.initDeck();
+    deckManager.shuffleDeck();
     for (int i = 0; i < 2; i++)
     {
         deckManager.deal(player.hand);
@@ -86,5 +90,6 @@ void Game::hitOrStand()
 void Game::playGame()
 {
     restartGame();
+    showHands();
     hitOrStand();
 }

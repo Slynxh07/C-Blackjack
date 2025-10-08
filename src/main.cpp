@@ -8,8 +8,7 @@ int main()
 
         while (true)
         {
-                game.showHands();
-                game.hitOrStand();
+                game.playGame();
                 std::cout << "Play again (Y/N): ";
                 std::cin >> input;
                 if (toupper(input) != 'Y')
