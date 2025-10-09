@@ -12,6 +12,7 @@ class Game {
     public:
         Game();
         void playGame();
+        bool gameOver();
         
     private:
         bool dealerShow;

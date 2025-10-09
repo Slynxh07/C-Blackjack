@@ -9,12 +9,14 @@ int main()
         while (true)
         {
                 game.playGame();
-                std::cout << "Play again (Y/N): ";
-                std::cin >> input;
-                if (toupper(input) != 'Y')
+                if (game.gameOver()) break;
+                else
                 {
-                        break;
+                        std::cout << "Play again (Y/N): ";
+                        std::cin >> input;
+                        if (toupper(input) != 'Y') break;
                 }
+                
         }
         return 0;
 }

@@ -153,6 +153,15 @@ void Game::placeBet()
     player.returnBet(-bet);
 }
 
+bool Game::gameOver() {
+    if (player.getBankAmount() <= 0)
+    {
+        std::cout << "BANKRUPT! GAME OVER!" << std::endl;
+        return true;
+    }
+    return false;
+}
+
 void Game::playGame()
 {
     restartGame();
