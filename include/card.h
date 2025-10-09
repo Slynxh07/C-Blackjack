@@ -2,7 +2,7 @@
 
 class Card {
     public:
-        virtual void checkHard(int handVal);
+        void checkHard();
         int getValue();
         char getFace();
     protected:

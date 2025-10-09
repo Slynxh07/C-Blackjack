@@ -10,7 +10,7 @@ char Card::getFace()
     return face;
 }
 
-void Card::checkHard(int handVal)
+void Card::checkHard()
 {
-
+    this->value = 1;
 }

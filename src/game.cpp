@@ -68,11 +68,13 @@ void Game::hitOrStand()
             {
                 case ('H'):
                     deckManager.deal(player.hand);
+                    canPlay = !player.isBust();
                     showHands();
                     valid = true;
                     break;
                 case('S'):
                     player.stand();
+                    canPlay = !player.isStanding();
                     dealerShow = true;
                     valid = true;
                     break;
@@ -81,7 +83,7 @@ void Game::hitOrStand()
                     break;
             }
         }
-        if (player.isBust() || player.isStanding()) canPlay = false;
+        valid = false;
     }
 
     

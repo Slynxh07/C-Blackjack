@@ -8,13 +8,6 @@ class Ace : public Card {
             this->value = 11;
             this->face = 'A';
         }
-        void checkHard(int handVal) override
-        {
-            if (handVal > 21)
-            {
-                this->value = 1;
-            }
-        }
 };
 
 class King : public Card {

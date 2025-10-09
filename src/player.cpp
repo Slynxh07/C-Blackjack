@@ -18,14 +18,13 @@ bool Player::isStanding()
 
 bool Player::isBust()
 {
-    std::cout << "Func called";
     if (calcHandVal() > 21)
     {
-        for (Card c : hand)
+        for (Card &c : hand)
         {
             if (c.getValue() == 11)
             {
-                c.checkHard(calcHandVal());
+                c.checkHard();
                 return isBust();
             }
         }

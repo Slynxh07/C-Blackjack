@@ -9,6 +9,7 @@ DeckManager::DeckManager()
 void DeckManager::initDeck()
 {
     std::vector<Card> cardTypes = {Ace(), Two(), Three(), Four(), Five(), Six(), Seven(), Eight(), Nine(), Ten(), Jack(), Queen(), King()};
+    Deck.clear();
 
     for (int i = 0; i < cardTypes.size(); i++)
     {
