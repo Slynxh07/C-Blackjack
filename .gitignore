@@ -13,6 +13,6 @@ Makefile
 .DS_Store
 Thumbs.db
 
-# Editor configs (optional)
+# Editor configs
 .vscode/
 .idea/
