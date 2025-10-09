@@ -23,7 +23,7 @@ void Game::restartGame()
 
 void Game::showHands()
 {
-    std::cout << "===============================";
+    std::cout << "===============================" << std::endl;
     if (!dealerShow)
     {
         std::cout << "Dealer's Hand: " << dealerHand[0].getFace() << " X";
