@@ -24,6 +24,12 @@ void Game::restartGame()
 void Game::showHands()
 {
     std::cout << "===============================" << std::endl;
+    std::cout << "Player's Hand: ";
+    for (Card c : player.hand)
+    {
+        std::cout << c.getFace() << " ";
+    }
+    std::cout << std::endl;
     if (!dealerShow)
     {
         std::cout << "Dealer's Hand: " << dealerHand[0].getFace() << " X";
@@ -35,12 +41,6 @@ void Game::showHands()
         {
             std::cout << c.getFace() << " ";
         }
-    }
-    std::cout << std::endl;
-    std::cout << "Player's Hand: ";
-    for (Card c : player.hand)
-    {
-        std::cout << c.getFace() << " ";
     }
     std::cout << std::endl << "Player Hand Value: " << player.calcHandVal();
     std::cout << std::endl << "Dealer Hand Value: " << dealerHandVal();
@@ -55,6 +55,13 @@ void Game::hitOrStand()
 
     while(canPlay)
     {
+        if (checkBlackJack())
+        {
+            player.stand();
+            canPlay = false;
+            break;
+        }
+
         while (!valid)
         {
             std::cout << "Hit or Stand: ";
@@ -131,6 +138,12 @@ bool Game::playerWin()
     else return false;
 }
 
+bool Game::checkBlackJack()
+{
+    if (player.calcHandVal() == 21) return true;
+    return false;
+}
+
 void Game::playGame()
 {
     restartGame();
@@ -140,6 +153,13 @@ void Game::playGame()
     {
         dealerPlay();
     }
-    if (playerWin()) std::cout << "You win!" << std::endl;
+    else
+    {
+        dealerShow = true;
+        showHands();
+    }
+
+    if (player.calcHandVal() == dealerHandVal()) std::cout << "Push!" << std::endl;
+    else if (playerWin()) std::cout << "You win!" << std::endl;
     else std::cout << "You lose!" << std::endl;
 }

@@ -25,4 +25,5 @@ class Game {
         int dealerHandVal();
         bool dealerBust();
         bool playerWin();
+        bool checkBlackJack();
     };
