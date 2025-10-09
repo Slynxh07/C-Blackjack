@@ -4,10 +4,12 @@ Game::Game()
 {
     player = Player();
     deckManager = DeckManager();
+    double bet = 0.0;
 }
 
 void Game::restartGame()
 {
+    std::cout << "Current Balance: $" << player.getBankAmount() << std::endl;
     player.hand.clear();
     dealerHand.clear();
     deckManager.initDeck();
@@ -144,9 +146,17 @@ bool Game::checkBlackJack()
     return false;
 }
 
+void Game::placeBet()
+{
+    std::cout << "Enter a bet amount: ";
+    std::cin >> bet;
+    player.returnBet(-bet);
+}
+
 void Game::playGame()
 {
     restartGame();
+    placeBet();
     showHands();
     hitOrStand();
     if (!player.isBust())
@@ -159,7 +169,20 @@ void Game::playGame()
         showHands();
     }
 
-    if (player.calcHandVal() == dealerHandVal()) std::cout << "Push!" << std::endl;
-    else if (playerWin()) std::cout << "You win!" << std::endl;
-    else std::cout << "You lose!" << std::endl;
+    if (player.calcHandVal() == dealerHandVal())
+    {
+        std::cout << "Push!" << std::endl;
+        player.returnBet(bet);
+    }
+    else if (playerWin())
+    {
+        std::cout << "You win!" << std::endl;
+        player.returnBet(bet * 2);
+    }
+    else 
+    {
+        std::cout << "You lose!" << std::endl;
+    }
+
+    std::cout << "Current Balance: $" << player.getBankAmount() << std::endl;
 }

@@ -15,6 +15,7 @@ class Game {
         
     private:
         bool dealerShow;
+        double bet;
         Player player;
         DeckManager deckManager;
         std::vector<Card> dealerHand;
@@ -26,4 +27,5 @@ class Game {
         bool dealerBust();
         bool playerWin();
         bool checkBlackJack();
+        void placeBet();
     };

@@ -11,8 +11,11 @@ class Player {
         bool isBust();
         int calcHandVal();
         void playerReset();
+        double getBankAmount();
+        void returnBet(double amount);
 
     private:
         bool standing;
         bool bust;
+        double bank;
 };

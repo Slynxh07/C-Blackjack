@@ -4,6 +4,7 @@ Player::Player()
 {
     standing = false;
     bust = false;
+    bank = 1000.0;
 }
 
 void Player::stand()
@@ -47,4 +48,14 @@ void Player::playerReset()
 {
     standing = false;
     bust = false;
+}
+
+void Player::returnBet(double amount)
+{
+    bank += amount;
+}
+
+double Player::getBankAmount()
+{
+    return bank;
 }
