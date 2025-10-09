@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <thread>
+#include <chrono>
 
 class Game {
     public:

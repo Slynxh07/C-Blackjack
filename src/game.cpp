@@ -23,6 +23,7 @@ void Game::restartGame()
 
 void Game::showHands()
 {
+    std::cout << "===============================";
     if (!dealerShow)
     {
         std::cout << "Dealer's Hand: " << dealerHand[0].getFace() << " X";
@@ -34,7 +35,6 @@ void Game::showHands()
         {
             std::cout << c.getFace() << " ";
         }
-        std::cout << std::endl << "Dealer Hand Value: " << dealerHandVal();
     }
     std::cout << std::endl;
     std::cout << "Player's Hand: ";
@@ -43,6 +43,7 @@ void Game::showHands()
         std::cout << c.getFace() << " ";
     }
     std::cout << std::endl << "Player Hand Value: " << player.calcHandVal();
+    std::cout << std::endl << "Dealer Hand Value: " << dealerHandVal();
     std::cout << std::endl;
 }
 
@@ -84,15 +85,18 @@ void Game::dealerPlay()
 {
     dealerShow = true;
     showHands();
+    std::this_thread::sleep_for(std::chrono::seconds(1));
     while (dealerHandVal() < 17)
     {
         deckManager.deal(dealerHand);
         showHands();
+        std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 }
 
 int Game::dealerHandVal()
 {
+    if (!dealerShow) return dealerHand[0].getValue();
     int sum = 0;
     for (Card c : dealerHand)
     {
