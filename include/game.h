@@ -9,16 +9,18 @@
 class Game {
     public:
         Game();
-        bool running();
-        void showHands();
-        void restartGame();
-        void hitOrStand();
         void playGame();
-
+        
     private:
-        bool isRunning;
         bool dealerShow;
         Player player;
         DeckManager deckManager;
         std::vector<Card> dealerHand;
-};
+        void restartGame();
+        void hitOrStand();
+        void showHands();
+        void dealerPlay();
+        int dealerHandVal();
+        bool dealerBust();
+        bool playerWin();
+    };

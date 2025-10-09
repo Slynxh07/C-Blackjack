@@ -2,15 +2,8 @@
 
 Game::Game()
 {
-    isRunning = true;
     player = Player();
     deckManager = DeckManager();
-    //restartGame();
-}
-
-bool Game::running()
-{
-    return isRunning;
 }
 
 void Game::restartGame()
@@ -41,6 +34,7 @@ void Game::showHands()
         {
             std::cout << c.getFace() << " ";
         }
+        std::cout << std::endl << "Dealer Hand Value: " << dealerHandVal();
     }
     std::cout << std::endl;
     std::cout << "Player's Hand: ";
@@ -48,7 +42,7 @@ void Game::showHands()
     {
         std::cout << c.getFace() << " ";
     }
-    std::cout << player.calcHandVal();
+    std::cout << std::endl << "Player Hand Value: " << player.calcHandVal();
     std::cout << std::endl;
 }
 
@@ -75,7 +69,6 @@ void Game::hitOrStand()
                 case('S'):
                     player.stand();
                     canPlay = !player.isStanding();
-                    dealerShow = true;
                     valid = true;
                     break;
                 default:
@@ -85,8 +78,53 @@ void Game::hitOrStand()
         }
         valid = false;
     }
+}
 
+void Game::dealerPlay()
+{
+    dealerShow = true;
+    showHands();
+    while (dealerHandVal() < 17)
+    {
+        deckManager.deal(dealerHand);
+        showHands();
+    }
+}
+
+int Game::dealerHandVal()
+{
+    int sum = 0;
+    for (Card c : dealerHand)
+    {
+        sum += c.getValue();
+    }
+    return sum;
+}
+
+bool Game::dealerBust()
+{
+    if (dealerHandVal() > 21)
+    {
+        for (Card &c : dealerHand)
+        {
+            if (c.getValue() == 11)
+            {
+                c.checkHard();
+                return dealerBust();
+            }
+        }
+        return true;
+    }
+    return false;
+}
+
+bool Game::playerWin()
+{
+    if (player.isBust()) return false;
+    else if (dealerBust()) return true;
     
+    if (player.calcHandVal() > dealerHandVal()) return true;
+    else return false;
 }
 
 void Game::playGame()
@@ -94,4 +132,10 @@ void Game::playGame()
     restartGame();
     showHands();
     hitOrStand();
+    if (!player.isBust())
+    {
+        dealerPlay();
+    }
+    if (playerWin()) std::cout << "You win!" << std::endl;
+    else std::cout << "You lose!" << std::endl;
 }

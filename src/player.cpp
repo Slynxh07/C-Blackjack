@@ -29,7 +29,6 @@ bool Player::isBust()
             }
         }
         bust = true;
-        std::cout << "BUST! You lose" << std::endl;
     }
     return bust;
 }
