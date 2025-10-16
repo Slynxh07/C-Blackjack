@@ -95,7 +95,7 @@ void Game::dealerPlay()
     dealerShow = true;
     showHands();
     std::this_thread::sleep_for(std::chrono::seconds(1));
-    while (dealerHandVal() < 17)
+    while (!dealerBust() && dealerHandVal() < 17)
     {
         deckManager.deal(dealerHand);
         showHands();
